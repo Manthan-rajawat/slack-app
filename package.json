@@ -1,0 +1,26 @@
+{
+  "name": "slack-app",
+  "version": "1.0.0",
+  "description": "dummy-app for qbyte",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manthan-rajawat/slack-app.git"
+  },
+  "author": "msk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manthan-rajawat/slack-app/issues"
+  },
+  "homepage": "https://github.com/Manthan-rajawat/slack-app#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.13.2",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "localtunnel": "^2.0.2",
+    "ngrok": "^5.0.0-beta.2"
+  }
+}
