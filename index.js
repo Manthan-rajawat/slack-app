@@ -20,7 +20,7 @@ app.event("app_home_opened", ({ event, say, client }) => {
   say(`Hello <@${event.user}>!`);
 
   try {
-    const result = client.views.publish({
+    client.views.publish({
       user_id: event.user,
       view: {
         type: "home",
@@ -65,7 +65,6 @@ app.event("app_home_opened", ({ event, say, client }) => {
               type: "image",
               image_url:
                 "https://qbyte.ai/static/media/image2.1b143e54314cf7fbfde3.jpg",
-              alt_text: "cute cat",
             },
           },
           {
@@ -188,13 +187,13 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
     logger.error(err);
   }
 
-  app.action("button_abc", async ({ ack, body, client, logger }) => {
+  app.action("button_abc", async ({ ack, body, client }) => {
     // Acknowledge the button request
     await ack();
     console.log(body);
     try {
       // Call views.update with the built-in client
-      const result = await client.views.update({
+      await client.views.update({
         // Pass the view_id
         view_id: body.view.id,
         // Pass the current hash to avoid race conditions
@@ -225,9 +224,8 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
           ],
         },
       });
-      logger.info(result);
     } catch (error) {
-      logger.error(error);
+      console.error(error);
     }
   });
 });
