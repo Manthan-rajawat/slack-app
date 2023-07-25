@@ -254,8 +254,6 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
   say(`Hello world and <@${event.user}>! `);
 
   try {
-    const user = await client.users.profile.get();
-    console.log(user);
     /* view.publish is the method that your app uses to push a view to the Home tab */
     await client.views.publish({
       /* the user that opened your app's app home */
@@ -347,6 +345,8 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   await ack();
 
   try {
+    const user = await client.users.profile.get();
+    console.log(user);
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
