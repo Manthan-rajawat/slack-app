@@ -45,6 +45,7 @@ app.event("app_home_opened", ({ event, say, client }) => {
               text: {
                 type: "plain_text",
                 text: "Qbyte.ai",
+                url: "https://Qbyte.ai",
                 emoji: true,
               },
               value: "click_me_123",
