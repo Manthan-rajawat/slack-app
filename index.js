@@ -255,7 +255,7 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
 
   try {
     const user = client.users.profile.get();
-    console.log(users);
+    console.log(user);
     /* view.publish is the method that your app uses to push a view to the Home tab */
     await client.views.publish({
       /* the user that opened your app's app home */
