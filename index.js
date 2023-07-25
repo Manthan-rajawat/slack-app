@@ -94,15 +94,11 @@ app.event("app_home_opened", ({ event, say, client }) => {
     console.log(err);
   }
 
-  app.client.users.info(async ({ body, ack, client }) => {
-    await ack();
-    console.log(body);
-  });
-
   app.action("button-action", async ({ body, ack, client }) => {
     await ack();
     console.log(body);
     try {
+      // app.client.users.info();
       await client.views.update({
         view_id: body.view.id,
         hash: body.view.hash,
@@ -130,6 +126,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   await ack();
   console.log(body);
   try {
+    const name = body.user_name;
     const result = await client.views.open({
       trigger_id: body.trigger_id,
       view: {
@@ -155,7 +152,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
             type: "section",
             text: {
               type: "plain_text",
-              text: ":wave: Hey David!\n\n Your organization has shared a course with you!",
+              text: `:wave: Hey ${name}!\n\n Your organization has shared a course with you!`,
               emoji: true,
             },
           },
