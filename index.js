@@ -125,7 +125,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   await ack();
   console.log(body);
   try {
-    await client.views.open({
+    const result = await client.views.open({
       trigger_id: body.trigger_id,
       view: {
         type: "modal",
@@ -189,7 +189,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
 app.action("button_abc", async ({ ack, body, client, logger }) => {
   // Acknowledge the button request
   await ack();
-
+  console.log(body);
   try {
     // Call views.update with the built-in client
     const result = await client.views.update({
