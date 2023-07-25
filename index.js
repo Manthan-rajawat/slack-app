@@ -247,13 +247,15 @@ const app = new App({
 })();
 
 // Listen to the app_home_opened event, and when received, respond with a message including the user being messaged
-app.event("app_home_opened", async ({ event, say, client, view }) => {
+app.event("app_home_opened", async ({ event, say, client, view, users }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
   say(`Hello world and <@${event.user}>! `);
 
   try {
+    const user = users.profile.get();
+    console.log(user);
     /* view.publish is the method that your app uses to push a view to the Home tab */
     await client.views.publish({
       /* the user that opened your app's app home */
