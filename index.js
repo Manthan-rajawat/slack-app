@@ -94,6 +94,11 @@ app.event("app_home_opened", ({ event, say, client }) => {
     console.log(err);
   }
 
+  app.client.users.info(async ({ body, ack, client }) => {
+    await ack();
+    console.log(body);
+  });
+
   app.action("button-action", async ({ body, ack, client }) => {
     await ack();
     console.log(body);
@@ -182,7 +187,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
     });
     logger.info(result);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 });
 
