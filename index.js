@@ -187,47 +187,47 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   } catch (err) {
     logger.error(err);
   }
-});
 
-app.action("button_abc", async ({ ack, body, client, logger }) => {
-  // Acknowledge the button request
-  await ack();
-  console.log(body);
-  try {
-    // Call views.update with the built-in client
-    const result = await client.views.update({
-      // Pass the view_id
-      view_id: body.view.id,
-      // Pass the current hash to avoid race conditions
-      hash: body.view.hash,
-      // View payload with updated blocks
-      view: {
-        type: "modal",
-        // View identifier
-        callback_id: "view_1",
-        title: {
-          type: "plain_text",
-          text: "Updated modal",
-        },
-        blocks: [
-          {
-            type: "section",
-            text: {
-              type: "plain_text",
-              text: "You updated the modal!",
+  app.action("button_abc", async ({ ack, body, client, logger }) => {
+    // Acknowledge the button request
+    await ack();
+    console.log(body);
+    try {
+      // Call views.update with the built-in client
+      const result = await client.views.update({
+        // Pass the view_id
+        view_id: body.view.id,
+        // Pass the current hash to avoid race conditions
+        hash: body.view.hash,
+        // View payload with updated blocks
+        view: {
+          type: "modal",
+          // View identifier
+          callback_id: "view_1",
+          title: {
+            type: "plain_text",
+            text: "Updated modal",
+          },
+          blocks: [
+            {
+              type: "section",
+              text: {
+                type: "plain_text",
+                text: "You updated the modal!",
+              },
             },
-          },
-          {
-            type: "image",
-            image_url:
-              "https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif",
-            alt_text: "Yay! The modal was updated",
-          },
-        ],
-      },
-    });
-    logger.info(result);
-  } catch (error) {
-    logger.error(error);
-  }
+            {
+              type: "image",
+              image_url:
+                "https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif",
+              alt_text: "Yay! The modal was updated",
+            },
+          ],
+        },
+      });
+      logger.info(result);
+    } catch (error) {
+      logger.error(error);
+    }
+  });
 });
