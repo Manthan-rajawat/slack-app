@@ -340,7 +340,7 @@ app.action("button", async ({ body, ack, client }) => {
 });
 
 // Listen for a slash command invocation
-app.command("/ticket", async ({ ack, body, client, logger }) => {
+app.command("/qbyte", async ({ ack, body, client, logger }) => {
   // Acknowledge the command request
   await ack();
 
