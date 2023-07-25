@@ -49,7 +49,7 @@ app.event("app_home_opened", ({ event, say, client }) => {
                 emoji: true,
               },
               value: "click_me_123",
-              action_id: "button-action",
+              action_id: "button",
             },
           },
           {
