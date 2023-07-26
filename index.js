@@ -356,6 +356,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
+      trigger_id: body.trigger_id,
       view: {
         type: "modal",
         submit: {
