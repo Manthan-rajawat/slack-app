@@ -235,16 +235,21 @@ require("dotenv").config();
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
+  // token: process.env.SLACK_BOT_TOKEN,
+  token: process.env.SLACK_USER_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
-  userToken: process.env.SLACK_USER_TOKEN,
+  // userToken: process.env.SLACK_USER_TOKEN,
 });
 
 (async () => {
   // Start your app
-  await app.start(process.env.PORT || 3000);
+  try {
+    await app.start(process.env.PORT || 3000);
 
-  console.log("⚡️Hello World.. Bolt app is running!");
+    console.log("⚡️Hello World.. Bolt app is running!");
+  } catch (err) {
+    console.error(err);
+  }
 })();
 
 // Listen to the app_home_opened event, and when received, respond with a message including the user being messaged
