@@ -348,7 +348,6 @@ app.action("button", async ({ body, ack, client }) => {
 app.command("/qbyte", async ({ ack, body, client, logger }) => {
   // Acknowledge the command request
   await ack();
-
   try {
     // const user = await client.users.profile.get();
     // console.log(user);
@@ -357,8 +356,6 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
-      trigger_id: body.trigger_id,
-      // View payload
       view: {
         type: "modal",
         trigger_id: body.trigger_id,
