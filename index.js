@@ -251,6 +251,7 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
+  console.log(event);
   say(`Hello world and <@${event.user}>! `);
 
   try {
