@@ -263,36 +263,41 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
       view: {
         type: "home",
         callback_id: "home_view",
-
-        /* body of the view */
         blocks: [
           {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: "*Welcome to your _App's Home_* :tada:",
+              text: `Hey <@${event.user}>!👋 I'm QByte's Bot. I'm here to help you find courses with you in Slack.`,
             },
-          },
-          {
-            type: "divider",
           },
           {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: "This button won't do much for now but you can set up a listener for it using the `actions()` method and passing its unique `action_id`. See an example in the `examples` folder within your Bolt app.",
+              text: "*1️⃣ Use the `/qbyte` command*. Type `/qbyte` that will open a popup where you can enter your bussiness email. Try it out by using the `/qbyte` command in this channel.",
             },
           },
           {
-            type: "actions",
+            type: "image",
+            title: {
+              type: "plain_text",
+              text: "image1",
+              emoji: true,
+            },
+            image_url:
+              "https://api.slack.com/img/blocks/bkb_template_images/onboardingComplex.jpg",
+            alt_text: "image1",
+          },
+          {
+            type: "divider",
+          },
+          {
+            type: "context",
             elements: [
               {
-                type: "button",
-                text: {
-                  type: "plain_text",
-                  text: "Click me!",
-                },
-                action_id: "button",
+                type: "mrkdwn",
+                text: "👀 View all courses with `/courses list`\n❓Get help at any time with `/qbyte help` or type *help* in a DM with me",
               },
             ],
           },
