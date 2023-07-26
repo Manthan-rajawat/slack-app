@@ -358,7 +358,6 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
       // Pass a valid trigger_id within 3 seconds of receiving it
       view: {
         type: "modal",
-        trigger_id: body.trigger_id,
         submit: {
           type: "plain_text",
           text: "Submit",
