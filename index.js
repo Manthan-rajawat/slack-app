@@ -350,8 +350,10 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   await ack();
 
   try {
-    const user = await client.users.profile.get();
-    console.log(user);
+    // const user = await client.users.profile.get();
+    // console.log(user);
+    const user = body.user_name;
+
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
@@ -359,88 +361,146 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
       // View payload
       view: {
         type: "modal",
-        // View identifier
-        callback_id: "view_1",
+        trigger_id: body.trigger_id,
+        submit: {
+          type: "plain_text",
+          text: "Submit",
+          emoji: true,
+        },
+        close: {
+          type: "plain_text",
+          text: "Cancel",
+          emoji: true,
+        },
         title: {
           type: "plain_text",
-          text: "Modal title",
+          text: "Qbyte",
+          emoji: true,
         },
         blocks: [
+          {
+            type: "section",
+            text: {
+              type: "plain_text",
+              text: `Hey <@${user}>,These are the courses shared with you!`,
+              emoji: true,
+            },
+          },
+          {
+            type: "divider",
+          },
           {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: "Welcome to a modal with _blocks_",
+              text: "*Airstream Suite*\n*Share with another person*. This course is all about Car safety.",
             },
             accessory: {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "Click me!",
-              },
-              action_id: "button_abc",
+              type: "image",
+              image_url:
+                "https://qbyte.ai/static/media/image2.1b143e54314cf7fbfde3.jpg",
+              alt_text: "Airstream Suite",
             },
           },
           {
-            type: "input",
-            block_id: "input_c",
-            label: {
-              type: "plain_text",
-              text: "What are your hopes and dreams?",
-            },
-            element: {
-              type: "plain_text_input",
-              action_id: "dreamy_input",
-              multiline: true,
-            },
+            type: "context",
+            elements: [
+              {
+                type: "mrkdwn",
+                text: "1x Queen Bed",
+              },
+              {
+                type: "mrkdwn",
+                text: "|",
+              },
+              {
+                type: "mrkdwn",
+                text: "$220 / night",
+              },
+            ],
           },
-        ],
-        submit: {
-          type: "plain_text",
-          text: "Submit",
-        },
-      },
-    });
-    logger.info(result);
-  } catch (error) {
-    logger.error(error);
-  }
-});
-
-// Listen for a button invocation with action_id `button_abc` (assume it's inside of a modal)
-app.action("button_abc", async ({ ack, body, client, logger }) => {
-  // Acknowledge the button request
-  await ack();
-
-  try {
-    // Call views.update with the built-in client
-    const result = await client.views.update({
-      // Pass the view_id
-      view_id: body.view.id,
-      // Pass the current hash to avoid race conditions
-      hash: body.view.hash,
-      // View payload with updated blocks
-      view: {
-        type: "modal",
-        // View identifier
-        callback_id: "view_1",
-        title: {
-          type: "plain_text",
-          text: "Updated modal",
-        },
-        blocks: [
+          {
+            type: "actions",
+            elements: [
+              {
+                type: "button",
+                text: {
+                  type: "plain_text",
+                  text: "Choose",
+                  emoji: true,
+                },
+                value: "click_me_123",
+              },
+              {
+                type: "button",
+                text: {
+                  type: "plain_text",
+                  text: "View Details",
+                  emoji: true,
+                },
+                value: "click_me_123",
+              },
+            ],
+          },
+          {
+            type: "divider",
+          },
           {
             type: "section",
             text: {
-              type: "plain_text",
-              text: "You updated the modal!",
+              type: "mrkdwn",
+              text: "*Redwood Suite*\n* This course is about the fire and safety management.",
+            },
+            accessory: {
+              type: "image",
+              image_url:
+                "https://qbyte.ai/static/media/image2.1b143e54314cf7fbfde3.jpg",
+              alt_text: "Redwood Suite",
             },
           },
           {
-            type: "image",
-            image_url:
-              "https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif",
-            alt_text: "Yay! The modal was updated",
+            type: "context",
+            elements: [
+              {
+                type: "mrkdwn",
+                text: "1x King Bed",
+              },
+              {
+                type: "mrkdwn",
+                text: "|",
+              },
+              {
+                type: "mrkdwn",
+                text: "$350 / night",
+              },
+            ],
+          },
+          {
+            type: "actions",
+            elements: [
+              {
+                type: "button",
+                text: {
+                  type: "plain_text",
+                  text: "✓ Your Choice",
+                  emoji: true,
+                },
+                style: "primary",
+                value: "click_me_123",
+              },
+              {
+                type: "button",
+                text: {
+                  type: "plain_text",
+                  text: "View Details",
+                  emoji: true,
+                },
+                value: "click_me_123",
+              },
+            ],
+          },
+          {
+            type: "divider",
           },
         ],
       },
