@@ -251,7 +251,7 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
-  console.log(event);
+  console.log(event.user);
   say(`Hello world and <@${event.user}>! `);
 
   try {
@@ -351,7 +351,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   await ack();
   try {
     // const user = await client.users.profile.get();
-    // console.log(user);
+    console.log(body);
     const user = body.user_name;
 
     // Call views.open with the built-in client
