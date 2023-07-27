@@ -264,11 +264,11 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
 
     // const list = await client.users.list();
 
+    console.log(users);
     // console.log(list);
     await client.views.publish({
       /* the user that opened your app's app home */
       user_id: event.user,
-
       /* the view object that appears in the app home*/
       view: {
         type: "home",
