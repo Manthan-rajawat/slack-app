@@ -264,7 +264,6 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
     console.log("client ->");
     console.log(client);
     const list = await client.users.list();
-    const profile = await client.users.profile.get();
 
     console.log(list);
     await client.views.publish({
@@ -367,6 +366,8 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   try {
     // const user = await client.users.profile.get();
     const user = body.user_name;
+    const profile = await client.users.profile.get();
+
     console.log(profile);
 
     // Call views.open with the built-in client
