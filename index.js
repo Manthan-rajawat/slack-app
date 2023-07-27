@@ -262,8 +262,10 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
 
   try {
     /* view.publish is the method that your app uses to push a view to the Home tab */
-    console.log("client ->");
-    console.log(client);
+    // console.log("client ->");
+    // console.log(client);
+    const email = client.users.identity.toString();
+    console.log(email);
     await client.views.publish({
       /* the user that opened your app's app home */
       user_id: event.user,
@@ -357,15 +359,14 @@ app.action("button", async ({ body, ack, client }) => {
 app.command("/qbyte", async ({ ack, body, client, logger }) => {
   // console.log("client ->");
   // console.log(client);
-  console.log("body ->");
-  console.log(body);
+  // console.log("body ->");
+  // console.log(body);
   // Acknowledge the command request
   await ack();
   try {
     // const user = await client.users.profile.get();
     const user = body.user_name;
-    const email = client.users.identity.toString();
-    console.log(email);
+
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
