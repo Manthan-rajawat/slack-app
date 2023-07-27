@@ -229,12 +229,14 @@
 //     }
 //   });
 // });
-
+const express = require("express");
+const axios = require("axios");
 const { App } = require("@slack/bolt");
+const app = express();
 require("dotenv").config();
 
 // Initializes your app with your bot token and signing secret
-const app = new App({
+const apk = new App({
   // token: process.env.SLACK_BOT_TOKEN,
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -276,8 +278,9 @@ app.get("/get_member_emails", async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
 // Listen to the app_home_opened event, and when received, respond with a message including the user being messaged
-app.event("app_home_opened", async ({ event, say, client }) => {
+apk.event("app_home_opened", async ({ event, say, client }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
@@ -343,7 +346,7 @@ app.event("app_home_opened", async ({ event, say, client }) => {
   }
 });
 
-app.action("button", async ({ body, ack, client }) => {
+apk.action("button", async ({ body, ack, client }) => {
   // Acknowledge the action
   await ack();
   console.log(body);
@@ -379,7 +382,7 @@ app.action("button", async ({ body, ack, client }) => {
 });
 
 // Listen for a slash command invocation
-app.command("/qbyte", async ({ ack, body, client, logger }) => {
+apk.command("/qbyte", async ({ ack, body, client, logger }) => {
   // console.log("client ->");
   // console.log(client);
   console.log("body ->");
