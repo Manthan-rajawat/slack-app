@@ -291,7 +291,6 @@ apk.event("app_home_opened", async ({ event, say, client }) => {
 
     // const list = await client.users.list();
 
-    console.log(users);
     // console.log(list);
     await client.views.publish({
       /* the user that opened your app's app home */
@@ -383,18 +382,9 @@ apk.action("button", async ({ body, ack, client }) => {
 
 // Listen for a slash command invocation
 apk.command("/qbyte", async ({ ack, body, client, logger }) => {
-  // console.log("client ->");
-  // console.log(client);
-  console.log("body ->");
-  console.log(body);
   // Acknowledge the command request
   await ack();
   try {
-    // const user = await client.users.profile.get();
-    const user = body.user_name;
-    const profile = await body.console.log("profile ->");
-    console.log(profile);
-
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
