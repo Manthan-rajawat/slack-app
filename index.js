@@ -252,8 +252,32 @@ const app = new App({
   }
 })();
 
+app.get("/get_member_emails", async (req, res) => {
+  try {
+    const response = await axios.get("https://slack.com/api/users.list", {
+      headers: {
+        Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+      },
+    });
+
+    if (response.data.ok) {
+      const memberEmails = response.data.members
+        .filter(
+          (member) => !member.deleted && !member.is_bot && member.profile.email
+        )
+        .map((member) => member.profile.email);
+
+      res.json({ success: true, emails: memberEmails });
+      console.log(memberEmails);
+    } else {
+      throw new Error("Failed to retrieve member information.");
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 // Listen to the app_home_opened event, and when received, respond with a message including the user being messaged
-app.event("app_home_opened", async ({ event, say, client, view, users }) => {
+app.event("app_home_opened", async ({ event, say, client }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
@@ -365,8 +389,7 @@ app.command("/qbyte", async ({ ack, body, client, logger }) => {
   try {
     // const user = await client.users.profile.get();
     const user = body.user_name;
-    const profile = await client.users.profile.get();
-    console.log("profile ->");
+    const profile = await body.console.log("profile ->");
     console.log(profile);
 
     // Call views.open with the built-in client
