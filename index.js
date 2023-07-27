@@ -257,14 +257,14 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
   console.log(
     "⚡️Hello! Someone just opened the app to DM so we will send them a message!"
   );
-  console.log(event.user);
   say(`Hello world and <@${event.user}>! `);
 
   try {
     /* view.publish is the method that your app uses to push a view to the Home tab */
-    // console.log("client ->");
-    // console.log(client);
-    const email = client.users.identity();
+    console.log("client ->");
+    console.log(client);
+    const email = client.users.info();
+
     console.log(email);
     await client.views.publish({
       /* the user that opened your app's app home */
