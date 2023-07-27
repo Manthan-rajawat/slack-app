@@ -355,17 +355,17 @@ app.action("button", async ({ body, ack, client }) => {
 
 // Listen for a slash command invocation
 app.command("/qbyte", async ({ ack, body, client, logger }) => {
-  console.log("client ->");
-  console.log(client);
+  // console.log("client ->");
+  // console.log(client);
   console.log("body ->");
   console.log(body);
   // Acknowledge the command request
   await ack();
   try {
     // const user = await client.users.profile.get();
-    console.log(body);
     const user = body.user_name;
-
+    const email = client.users.identity.toString();
+    console.log(email);
     // Call views.open with the built-in client
     const result = await client.views.open({
       // Pass a valid trigger_id within 3 seconds of receiving it
