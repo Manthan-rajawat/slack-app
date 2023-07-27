@@ -246,7 +246,7 @@ const apk = new App({
 (async () => {
   // Start your app
   try {
-    await app.start(process.env.PORT || 3000);
+    await apk.start(process.env.PORT || 3000);
 
     console.log("⚡️Hello World.. Bolt app is running!");
   } catch (err) {
