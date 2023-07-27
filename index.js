@@ -262,7 +262,8 @@ app.event("app_home_opened", async ({ event, say, client, view, users }) => {
 
   try {
     /* view.publish is the method that your app uses to push a view to the Home tab */
-    console.log("client ->" + client);
+    console.log("client ->");
+    console.log(client);
     await client.views.publish({
       /* the user that opened your app's app home */
       user_id: event.user,
@@ -354,8 +355,10 @@ app.action("button", async ({ body, ack, client }) => {
 
 // Listen for a slash command invocation
 app.command("/qbyte", async ({ ack, body, client, logger }) => {
-  console.log("client ->" + client);
-  console.log("body ->" + body);
+  console.log("client ->");
+  console.log(client);
+  console.log("body ->");
+  console.log(body);
   // Acknowledge the command request
   await ack();
   try {
